@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Awayk — Legal & Privacy Center</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        :root {
+            --bg-color: #0B0D17;
+            --surface-color: #121526;
+            --card-color: #1B1E36;
+            --primary-color: #E8A838;
+            --accent-color: #FF5F6D;
+            --text-main: #FFFFFF;
+            --text-muted: #8F9BB3;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --font-display: 'Outfit', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.6;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            max-width: 900px;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        /* --- HEADER --- */
+        header {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            padding: 20px 0;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 32px;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        h1 {
+            font-family: var(--font-display);
+            font-weight: 900;
+            font-size: 36px;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* --- TABS --- */
+        .tabs {
+            display: flex;
+            background-color: var(--surface-color);
+            padding: 8px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            gap: 8px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: none;
+            border: none;
+            color: var(--text-muted);
+            padding: 16px 8px;
+            border-radius: 14px;
+            cursor: pointer;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-btn i {
+            width: 18px;
+            height: 18px;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .tab-btn.active {
+            color: var(--bg-color);
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            box-shadow: 0 8px 24px rgba(232, 168, 56, 0.25);
+        }
+
+        /* --- CONTENT CARD --- */
+        .content-card {
+            background-color: var(--surface-color);
+            border-radius: 32px;
+            padding: 48px;
+            border: 1px solid var(--border-color);
+            min-height: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            transition: all 0.4s ease;
+        }
+
+        .legal-content {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .legal-content.active {
+            display: block;
+        }
+
+        /* --- MARKDOWN STYLING --- */
+        .legal-content h2 {
+            font-family: var(--font-display);
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            color: var(--primary-color);
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 8px;
+        }
+
+        .legal-content h3 {
+            font-family: var(--font-display);
+            font-size: 18px;
+            font-weight: 700;
+            margin: 28px 0 12px 0;
+            color: var(--text-main);
+        }
+
+        .legal-content p {
+            color: #D3D8E6;
+            margin-bottom: 16px;
+            font-size: 15px;
+            line-height: 1.7;
+        }
+
+        .legal-content ul {
+            margin-left: 20px;
+            margin-bottom: 24px;
+            color: #D3D8E6;
+        }
+
+        .legal-content li {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: rgba(232, 168, 56, 0.1);
+            color: var(--primary-color);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-family: var(--font-display);
+            font-weight: 800;
+            font-size: 11px;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+            border: 1px solid rgba(232, 168, 56, 0.15);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 13px;
+            padding: 20px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        footer a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- ANIMATIONS --- */
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+            .content-card {
+                padding: 24px;
+            }
+            .tabs {
+                flex-direction: column;
+                border-radius: 24px;
+                padding: 12px;
+            }
+            .tab-btn {
+                padding: 12px;
+                border-radius: 12px;
+            }
+            h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">☀️</span>
+            <h1>AWAYK</h1>
+        </div>
+        <div class="subtitle">Legal & Privacy Center</div>
+    </header>
+
+    <!-- Tabs Navigation -->
+    <nav class="tabs">
+        <button class="tab-btn active" onclick="switchTab('privacy')">
+            <i class="lucide-shield-check"></i> Privacy Policy
+        </button>
+        <button class="tab-btn" onclick="switchTab('terms')">
+            <i class="lucide-file-text"></i> Terms of Service
+        </button>
+        <button class="tab-btn" onclick="switchTab('eula')">
+            <i class="lucide-key-round"></i> EULA
+        </button>
+    </nav>
+
+    <!-- Content Card -->
+    <main class="content-card">
+        
+        <!-- PRIVACY POLICY -->
+        <section id="privacy" class="legal-content active">
+            <span class="badge">SECURED & OFFLINE</span>
+            <h2>Privacy Policy</h2>
+            <p><strong>Last Updated: May 17, 2026</strong></p>
+            <p>Awayk ("we," "our," or "us") is committed to protecting your privacy. This Privacy Policy explains how Awayk handles your data. Unlike traditional apps, Awayk is designed with an <strong>offline-first, privacy-by-design</strong> architecture.</p>
+
+            <h3>1. 100% Local Data Processing (No Cloud Uploads)</h3>
+            <p>To help you wake up, Awayk utilizes advanced on-device Machine Learning (AI) missions:</p>
+            <ul>
+                <li><strong>Camera & Image Verification (Object Hunt, Sky, Grass, Bed, Smile):</strong> All image recognition and face tracking are processed <strong>100% locally</strong> in your device’s secure enclave/RAM. No photos or video frames are ever recorded, stored on your device, or transmitted over the internet to any external servers.</li>
+                <li><strong>Voice & Microphone Verification (Intention, Voice):</strong> Speech-to-text conversion is processed <strong>100% locally</strong> on-device. No audio recordings or transcripts are ever stored or uploaded.</li>
+                <li><strong>Health & Sensor Data (Steps, Shake, Squats, Pushups):</strong> Accelerometer readings are processed immediately on-device to determine mission completion and are not uploaded.</li>
+            </ul>
+
+            <h3>2. Zero Account Requirement</h3>
+            <p>You do not need to create an account, register an email address, or log in to use Awayk. Your alarm configurations, consistency streak statistics, and mission preferences are stored locally in your device's secure storage.</p>
+
+            <h3>3. Subscription & Purchase Data</h3>
+            <p>All premium subscription purchases (Awayk Pro) are processed securely through Apple App Store (In-App Purchases) or Google Play Billing. Awayk does not collect or store billing info; we only receive anonymous transaction tokens from the platform operators.</p>
+
+            <h3>4. Third-Party Services</h3>
+            <p>Awayk may use system-native APIs (such as Google ML Kit and Apple Vision) to execute local machine learning models. These libraries run locally inside the application bundle and do not transmit data to external services.</p>
+
+            <h3>5. Policy Updates</h3>
+            <p>We may update our Privacy Policy from time to time. Any changes will be reflected by updating the "Last Updated" date at the top of this policy inside the app.</p>
+        </section>
+
+        <!-- TERMS OF SERVICE -->
+        <section id="terms" class="legal-content">
+            <span class="badge">USER TERMS & AGREEMENT</span>
+            <h2>Terms of Service</h2>
+            <p><strong>Last Updated: May 17, 2026</strong></p>
+            <p>Please read these Terms of Service ("Terms") carefully before using the Awayk mobile application (the "Service" or "App") operated by Awayk.</p>
+
+            <h3>1. Agreement to Terms</h3>
+            <p>By installing or using Awayk, you agree to be bound by these Terms. If you do not agree to these Terms, do not install or use the App.</p>
+
+            <h3>2. Responsible Alarm Use & Disclaimer</h3>
+            <p>Awayk is a motivational alarm clock designed to help you build morning consistency. However:</p>
+            <ul>
+                <li><strong>No Guarantee of Waking Up:</strong> You acknowledge that heavy sleep, technical battery exhaustion, device system updates, hardware failures, or silencing your phone’s system volume may prevent an alarm from playing.</li>
+                <li><strong>No Liability for Over-Sleeping:</strong> Under no circumstances shall Awayk, its developers, or affiliates be liable for any direct or indirect damages, losses, or missed appointments resulting from alarms failing to play or your inability to complete a mission.</li>
+                <li><strong>Safe Physical Execution:</strong> When performing physical missions (such as squats, pushups, walking steps, or navigating your room in the dark), you agree to proceed with caution. Awayk is not liable for any personal injuries, slips, falls, or property damage sustained while executing active missions.</li>
+            </ul>
+
+            <h3>3. Subscriptions (Awayk Pro)</h3>
+            <p>Awayk offers a premium subscription model ("Awayk Pro") with billing options (Weekly, Monthly, or Annual) giving unlimited alarms, custom music, and premium AI missions.</p>
+            <ul>
+                <li><strong>Auto-Renewal:</strong> Subscriptions automatically renew unless auto-renew is turned off at least 24 hours before the end of the current billing cycle.</li>
+                <li><strong>Billing Platform:</strong> All billing operations, subscription modifications, and payment methods are governed by the respective platform operator (Apple App Store / Google Play Store).</li>
+                <li><strong>Cancellations:</strong> You can cancel your subscription at any time via your Apple ID Subscriptions page or Google Play Subscriptions menu.</li>
+                <li><strong>Refunds:</strong> All refund requests are handled exclusively by Apple or Google in accordance with their respective refund policies. We cannot issue refunds directly.</li>
+            </ul>
+        </section>
+
+        <!-- EULA -->
+        <section id="eula" class="legal-content">
+            <span class="badge">EULA LICENSE</span>
+            <h2>End User License Agreement</h2>
+            <p><strong>Last Updated: May 17, 2026</strong></p>
+            <p>This End User License Agreement ("EULA") is a legal agreement between you and Awayk. This EULA governs your use of the Awayk mobile application.</p>
+
+            <h3>1. License Grant</h3>
+            <p>Awayk grants you a revocable, non-exclusive, non-transferable, limited license to download, install, and use the App solely for your personal, non-commercial purposes on mobile devices owned or controlled by you, strictly in accordance with this Agreement.</p>
+
+            <h3>2. Apple & Google Minimum EULA Requirements</h3>
+            <p>To the extent that you download the App from the Apple App Store or Google Play Store, you acknowledge and agree that:</p>
+            <ul>
+                <li><strong>Scope of License:</strong> The license granted to you is limited to a non-transferable license to use the App on any Apple-branded or Android-branded products that you own or control.</li>
+                <li><strong>Maintenance and Support:</strong> Awayk is solely responsible for providing any maintenance and support services with respect to the App. You acknowledge that Apple and Google have no obligation whatsoever to furnish any maintenance and support services.</li>
+                <li><strong>Warranty:</strong> In the event of any failure of the App to conform to any applicable warranty, you may notify Apple or Google, and they will refund the purchase price. To the maximum extent permitted by law, Apple and Google will have no other warranty obligation whatsoever.</li>
+                <li><strong>Product Claims:</strong> Awayk, not Apple or Google, is responsible for addressing any claims relating to your possession and/or use of the App, including product liability, legal/regulatory compliance, or consumer protection.</li>
+                <li><strong>Intellectual Property Rights:</strong> In the event of any third-party claim of IP infringement, Awayk (not Apple or Google) will be solely responsible for the investigation, defense, settlement, and discharge.</li>
+                <li><strong>Third-Party Beneficiary:</strong> You acknowledge and agree that Apple, Google, and their subsidiaries are third-party beneficiaries of this EULA, and that they will have the right to enforce this Agreement against you.</li>
+            </ul>
+
+            <h3>3. Termination</h3>
+            <p>This Agreement is effective until terminated by you or Awayk. Your rights under this Agreement will terminate automatically without notice if you fail to comply with any of its terms. Upon termination, you must cease all use of the App and delete all copies of the App.</p>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 Awayk App. All rights reserved.</p>
+        <p>Built for privacy, powered locally.</p>
+    </footer>
+</div>
+
+<script>
+    // Tab switching logic
+    function switchTab(tabId) {
+        // Remove active class from all buttons
+        const buttons = document.querySelectorAll('.tab-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+
+        // Remove active class from all content sections
+        const sections = document.querySelectorAll('.legal-content');
+        sections.forEach(sec => sec.classList.remove('active'));
+
+        // Find active button
+        const clickedBtn = document.querySelector(`button[onclick="switchTab('${tabId}')"]`);
+        if (clickedBtn) clickedBtn.classList.add('active');
+
+        // Show matching section
+        const targetSection = document.getElementById(tabId);
+        if (targetSection) targetSection.classList.add('active');
+    }
+
+    // Initialize Lucide Icons
+    lucide.createIcons();
+</script>
+
+</body>
+</html>
