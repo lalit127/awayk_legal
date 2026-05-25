@@ -396,6 +396,17 @@
         if (targetSection) targetSection.classList.add('active');
     }
 
+    // Handle initial hash and hash changes for deep linking
+    function checkHash() {
+        const hash = window.location.hash.substring(1);
+        if (['privacy', 'terms', 'eula'].includes(hash)) {
+            switchTab(hash);
+        }
+    }
+
+    window.addEventListener('hashchange', checkHash);
+    window.addEventListener('DOMContentLoaded', checkHash);
+
     // Initialize Lucide Icons
     lucide.createIcons();
 </script>
